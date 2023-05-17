@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import {
   Home,
   Explore,
