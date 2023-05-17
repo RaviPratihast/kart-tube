@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, useNavigate, NavLink } from "react-router-dom";
+import {
+  Home,
+  Explore,
+  Playlist,
+  WatchLater,
+  Liked,
+  History,
+} from "./pages/index-pages";
+// import {Header,Navbar} from "./components/index-components"
+import "./App.css";
 
 function App() {
+  function getActiveStyle({ isActive }) {
+    return {
+      color: isActive ? "blue" : "black",
+    };
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <NavLink style={getActiveStyle} to="/">
+          Home
+        </NavLink>
+        <NavLink style={getActiveStyle} to="/explore">
+          Explore
+        </NavLink>
+        <NavLink style={getActiveStyle} to="/playlist">
+          Playlist
+        </NavLink>
+        <NavLink style={getActiveStyle} to="/watch-later">
+          Watch Later
+        </NavLink>
+        <NavLink style={getActiveStyle} to="/Liked">
+          Liked
+        </NavLink>
+        <NavLink style={getActiveStyle} to="/History">
+          History
+        </NavLink>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/playlist" element={<Playlist />} />
+        <Route path="/watch-later" element={<WatchLater />} />
+        <Route path="/liked" element={<Liked />} />
+        <Route path="/history" element={<History />} />
+      </Routes>
     </div>
   );
 }
