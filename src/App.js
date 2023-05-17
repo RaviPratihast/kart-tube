@@ -9,7 +9,7 @@ import {
   History,
 } from "./pages/index-pages";
 // import {Header,Navbar} from "./components/index-components"
-import "./App.css";
+import "./index.css";
 
 function App() {
   function getActiveStyle({ isActive }) {
@@ -19,7 +19,7 @@ function App() {
   }
   return (
     <div className="App">
-      <nav>
+      <nav className="border-2 bg-blue-600">
         <NavLink style={getActiveStyle} to="/">
           Home
         </NavLink>
