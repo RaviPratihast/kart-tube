@@ -3,6 +3,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import {
   Home,
   Explore,
+  VideoDetails,
   Playlist,
   WatchLater,
   Liked,
@@ -53,6 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/video/:videoId" element={<VideoDetails/>}/>
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
