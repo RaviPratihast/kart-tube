@@ -9,7 +9,7 @@ import VideoCard from "../../components/card/videoCard";
 function Explore() {
   const { state } = useVideo();
   return (
-    <div className="flex flex-wrap gap-5">
+    <div className="flex flex-wrap justify-center gap-5  m-10">
       {state.initialVideo.map((video) => {
         return (
           <Link key={video.id} to={`/video/${video.id}`}>

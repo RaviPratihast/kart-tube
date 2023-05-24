@@ -2,12 +2,18 @@ import React from "react";
 
 function VideoCard({ video }) {
   return (
-    <div className="border">
-      <div className="border">
-        <img src="/public/images/1520921-i-7befa2909186.webp" alt="random" />
+    <div className=" h-80 w-64 flex flex-col">
+      <div className="border flex-grow">
+        <img
+          src={video.thumbnail}
+          alt="random"
+          className="w-full h-full object-cover"
+        />
       </div>
-      <div className="border">
+      <div className=" flex-shrink">
+
         <h4>{video.title}</h4>
+        {/* Additional content */}
       </div>
     </div>
   );
