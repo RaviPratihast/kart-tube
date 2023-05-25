@@ -15,7 +15,7 @@ function VideoCard({ video }) {
           <h2 className="text-lg font-bold">{video.title}</h2>
         </div>
         <div>
-          <button className=" flex  gap-1 bg-blue-500 hover:bg-blue-700 text-white  py-2 px-4 rounded">
+          <button className=" flex  gap-1 bg-blue-500 border hover:border-blue-500 hover:bg-white text-white hover:text-blue-700 py-2 px-4 rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
