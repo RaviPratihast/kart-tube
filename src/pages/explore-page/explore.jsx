@@ -9,16 +9,12 @@ import VideoCard from "../../components/card/videoCard";
 function Explore() {
   const { state } = useVideo();
   return (
-    <div className="flex flex-wrap flex-4 justify-start items-start gap-5  mt-10 mb-10 mx-36  ">
-      {state.initialVideo.map((video) => {
-        return (
-          
-            <div>
-              <VideoCard video={video} />
-            </div>
-        );
-        //  return <VideoLibrary key={video.id} video={video}/>
-      })}
+    <div className="flex flex-wrap items-center ">
+      <div className="flex flex-wrap justify-start mx-10 mt-5 mb-5 gap-1  border-slate-800 ">
+        {state.initialVideo.map((video) => {
+          return <VideoCard video={video} />;
+        })}
+      </div>
     </div>
   );
 }
