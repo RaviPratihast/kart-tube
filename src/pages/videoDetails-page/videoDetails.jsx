@@ -8,11 +8,11 @@ function VideoDetails() {
   const { videoId } = useParams();
   const { state } = useVideo();
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-full max-w-screen-lg mx-auto">
       {state.initialVideo.map(
         (video) =>
           video.id === videoId && (
-            <div key={video.id} className="m-20 w-7/12  ">
+            <div key={video.id} className="m-20">
               <div className="">
                 <VideoLibrary video={video} />
               </div>
