@@ -1,5 +1,6 @@
 import React from "react";
-import { CheckCircleIcon } from "@heroicons/react/solid";
+import "@heroicons/react/solid";
+import Button from "../../components/button/button";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import VideoLibrary from "../../components/videoLibrary/videoLibrary";
@@ -22,7 +23,7 @@ function VideoDetails() {
                       <h2 className="">{video.title}</h2>
                     </div>
                     <div className="flex justify-between items-center   w-1/2 p-2">
-                      <button className="flex gap-2  bg-blue-500 border hover:border-blue-500 hover:bg-white text-white hover:text-blue-700 py-2 px-4 rounded">
+                      <Button onClick={() => console.log("clicked")}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -38,8 +39,8 @@ function VideoDetails() {
                           />
                         </svg>
                         Like
-                      </button>
-                      <button className="flex gap-2  bg-blue-500 border hover:border-blue-500 hover:bg-white text-white hover:text-blue-700 py-2 px-4 rounded">
+                      </Button>
+                      <Button onClick={() => console.log("clicked")}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -55,8 +56,8 @@ function VideoDetails() {
                           />
                         </svg>
                         Watch Later
-                      </button>
-                      <button className="flex gap-2  bg-blue-500 border hover:border-blue-500 hover:bg-white text-white hover:text-blue-700 py-2 px-4 rounded">
+                      </Button>
+                      <Button onClick={() => console.log("clicked")}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -72,8 +73,8 @@ function VideoDetails() {
                           />
                         </svg>
                         Share
-                      </button>
-                      <button className="flex gap-2  bg-blue-500 border hover:border-blue-500 hover:bg-white text-white hover:text-blue-700 py-2 px-4 rounded">
+                      </Button>
+                      <Button onClick={() => console.log("clicked")}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -89,7 +90,7 @@ function VideoDetails() {
                           />
                         </svg>
                         Add To Playlist
-                      </button>
+                      </Button>
                     </div>
                   </div>
                   <div className="h-24 p-2 ">
