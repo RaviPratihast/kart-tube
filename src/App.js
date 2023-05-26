@@ -20,7 +20,7 @@ function App() {
   }
   return (
     <div className="App">
-      <nav className="border-0 bg-blue-600 flex w-full h-14 justify-between items-center">
+      <nav className="border-0 bg-blue-600 flex w-full h-14 justify-between items-center fixed">
         <div className="w-2/3 ml-5 space-x-4">
           <NavLink style={getActiveStyle} to="/">
             KartTube
@@ -51,10 +51,11 @@ function App() {
           </div>
         </div>
       </nav>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/video/:videoId" element={<VideoDetails/>}/>
+        <Route path="/video/:videoId" element={<VideoDetails />} />
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
