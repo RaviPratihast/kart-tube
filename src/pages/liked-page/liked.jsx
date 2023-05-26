@@ -3,7 +3,7 @@ import Button from '../../components/button/button'
 
 function Liked() {
   return (
-    <div className="flex h-screen flex-col">
+  
     <div className=" flex flex-col  mt-28 w-full h-full ">
       <div className=" shadow-lg h-20 w-60 flex flex-col justify-center items-center border border-blue-500 rounded-md ml-10">
         {/* count of playlist */}
@@ -19,7 +19,6 @@ function Liked() {
         {/* div with same above style, inside this div there will be added playlist, first the playlist will be created. */}
       </div>
     </div>
-  </div>
   )
 }
 
