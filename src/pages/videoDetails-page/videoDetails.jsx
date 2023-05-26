@@ -1,5 +1,4 @@
 import React from "react";
-import "@heroicons/react/solid";
 import Button from "../../components/button/button";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";

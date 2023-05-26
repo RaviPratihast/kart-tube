@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "@heroicons/react/solid";
 
 import { BrowserRouter as Router } from "react-router-dom";
 // import "./tailwind.config";
