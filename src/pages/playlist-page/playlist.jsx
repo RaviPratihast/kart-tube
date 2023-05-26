@@ -9,9 +9,9 @@ function Playlist() {
           {/* count of playlist */}
           <h3>Playlists: 3</h3>
         </div>
-        <div className="flex-1 flex justify-center items-center">
+        <div className=" flex justify-center items-center mt-20">
           {/* playlists */}
-          <div className="border shadow-lg h-60 w-80 flex flex-col justify-center items-center gap-2 rounded-md">
+          <div className="border shadow-lg h-60 w-auto p-20 flex flex-col justify-center items-center gap-2 rounded-md  border-blue-500">
             <h2 className="flex flex-col text-lg">Your Playlist is Empty !</h2>
             <Button>Watch Now</Button>
           </div>
