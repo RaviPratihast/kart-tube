@@ -8,6 +8,7 @@ import {
   WatchLater,
   Liked,
   History,
+  Login,
 } from "./pages/index-pages";
 // import {Header,Navbar} from "./components/index-components"
 import "./index.css";
@@ -60,6 +61,7 @@ function App() {
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
         <Route path="/history" element={<History />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
