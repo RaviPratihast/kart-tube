@@ -1,7 +1,12 @@
 import React from "react";
 import Button from "../../components/button/button";
+import { useNavigate } from "react-router-dom";
 
 function Playlist() {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate("/explore");
+  }
   return (
     <div className="flex h-screen flex-col">
       <div className=" flex flex-col  mt-28 w-full h-full ">
@@ -13,7 +18,7 @@ function Playlist() {
           {/* playlists */}
           <div className="border shadow-lg h-60 w-auto p-20 flex flex-col justify-center items-center gap-2 rounded-md  border-blue-500">
             <h2 className="flex flex-col text-lg">Your Playlist is Empty !</h2>
-            <Button>Watch Now</Button>
+            <Button onClick={handleClick}>Watch Now</Button>
           </div>
 
           {/* div with same above style, inside this div there will be added playlist, first the playlist will be created. */}
