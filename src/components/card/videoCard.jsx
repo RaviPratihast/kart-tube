@@ -5,7 +5,7 @@ import Button from "../button/button";
 function VideoCard({ video }) {
   return (
     <div className="flex  flex-col w-56 h-56  rounded overflow-hidden shadow-lg">
-      <Link key={video.id} to={`/video/${video.id}`}>
+      <Link to={`/video/${video.id}`}>
         <div className="">
           <img
             src={video.thumbnail}

@@ -12,7 +12,7 @@ function Explore() {
     <div className="flex flex-wrap items-center ">
       <div className="flex flex-wrap justify-start mx-10 mt-28 mb-5 gap-1  border-slate-800 ">
         {state.initialVideo.map((video) => {
-          return <VideoCard video={video} />;
+          return <VideoCard key={video.id} video={video} />;
         })}
       </div>
     </div>
