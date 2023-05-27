@@ -14,9 +14,10 @@ function Liked() {
         {/* count of playlist */}
         <h3>Liked: 3</h3>
       </div>
-      <div className="m-20 flex justify-center items-center">
+      <div className="m-20 flex justify-center items-center border">
         {/* playlists */}
         <div className="shadow-lg h-60 w-auto p-20 flex flex-col justify-center items-center gap-2 rounded-md  border border-blue-500 ml-10">
+         {/* default div */}
           <h2 className="flex flex-col text-lg">Looks like you haven't liked anything yet.</h2>
           <Button onClick={handleClick}>Watch Now</Button>
         </div>
