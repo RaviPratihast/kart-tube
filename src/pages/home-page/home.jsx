@@ -1,10 +1,15 @@
 import "tailwindcss/tailwind.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/button";
 // import imageSrc from "/public/images/comic.jpg";
 import "../../index.css";
 
 function Home() {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate("/explore");
+  }
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="   h-auto w-1/2 p-2 mt-48 flex gap-10 justify-center items-center  rounded-md  mx-10">
@@ -17,7 +22,7 @@ function Home() {
             </p>
           </div>
           <div className=" w-full h-auto flex justify-end p-2">
-            <Button>Watch Now</Button>
+            <Button onClick={handleClick}>Watch Now</Button>
           </div>
         </div>
         <div className="">
