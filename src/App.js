@@ -9,6 +9,7 @@ import {
   Liked,
   History,
   Login,
+  SignUp,
 } from "./pages/index-pages";
 import Button from "./components/button/button";
 // import {Header,Navbar} from "./components/index-components"
@@ -86,6 +87,7 @@ function App() {
         <Route path="/liked" element={<Liked />} />
         <Route path="/history" element={<History />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );

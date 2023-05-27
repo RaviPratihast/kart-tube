@@ -6,5 +6,6 @@ import Liked from "./liked-page/liked";
 import History from "./history-page/history";
 import VideoDetails from "./videoDetails-page/videoDetails";
 import Login from "./login-page/login";
+import SignUp from "./signup-page/signup";
 
-export { Home, Explore,VideoDetails, Playlist, WatchLater, Liked, History,Login };
+export { Home, Explore,VideoDetails, Playlist, WatchLater, Liked, History,Login,SignUp };
