@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import {
   Home,
   Explore,
@@ -16,10 +16,15 @@ import Button from "./components/button/button";
 import "./index.css";
 
 function App() {
+  const navigate = useNavigate();
   function getActiveStyle({ isActive }) {
     return {
       color: isActive ? "white" : "black",
     };
+  }
+  
+  function handleClick(){
+    navigate("/login")
   }
   return (
     <div className="App">
@@ -73,7 +78,7 @@ function App() {
             </svg>
           </div>
           <div className="w-1/6">
-            <Button>Login</Button>
+            <Button onClick={handleClick}>Login</Button>
           </div>
         </div>
       </nav>

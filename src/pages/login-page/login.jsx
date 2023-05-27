@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/button";
 
 function Login() {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate("/signup");
+  }
   return (
     <div className="flex h-screen flex-col">
       <div className=" flex-1 justify-center items-center flex bg-blue-500">
@@ -58,7 +63,7 @@ function Login() {
           </div>
           <div className="flex justify-center mt-5 gap-2 mx-10">
             <p>Don't have account ? </p>
-            <span className="text-blue-500 font-medium">Sign up</span>
+            <span className="text-blue-500 font-medium cursor-pointer" onClick={handleClick}>Sign up</span>
           </div>
         </div>
       </div>
