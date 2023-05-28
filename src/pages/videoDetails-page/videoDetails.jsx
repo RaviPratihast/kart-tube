@@ -22,10 +22,10 @@ function VideoDetails() {
               <div className="flex  flex-col  text-slate">
                 <div className="flex flex-col justify-between  between h-50 w-full">
                   <div className="flex  h-10 w-full mt-2">
-                    <div className="flex justify-start items-center p-2 w-1/2">
+                    <div className="flex justify-start items-center p-2 w-1/3 ">
                       <h2 className="">{video.title}</h2>
                     </div>
-                    <div className="flex justify-between items-center   w-1/2 p-2">
+                    <div className="flex justify-end gap-5 items-center  w-full p-2">
                       <Button
                         onClick={() =>
                           // dispatch({
@@ -113,7 +113,7 @@ function VideoDetails() {
                       </Button>
                     </div>
                   </div>
-                  <div className="h-24 p-2 ">
+                  <div className="h-24 w-3/2 p-2  ">
                     <p>{video.description}</p>
                   </div>
                 </div>
