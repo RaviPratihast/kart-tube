@@ -3,13 +3,15 @@ import Button from "../../components/button/button";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import VideoLibrary from "../../components/videoLibrary/videoLibrary";
+import { checkingWatchLater } from "../../utilities/checkingWatchLater";
 function VideoDetails() {
   const { videoId } = useParams();
   const { state, dispatch } = useVideo();
 
   // checking if video is already in liked page, then liked button will be complete filled with blue.
   const isLiked = state.liked.find((likedVideo) => videoId === likedVideo.id);
-
+  const isAddWatchLater = checkingWatchLater(state, videoId);
+  console.log("watch_later", state.watchLater);
   return (
     <div className="flex flex-col justify-center items-center w-full max-w-screen-lg mx-auto ">
       {state.initialVideo.map(
@@ -60,13 +62,25 @@ function VideoDetails() {
                         </svg>
                         {isLiked ? "Liked" : "Like"}
                       </Button>
-                      <Button onClick={() => console.log("clicked")}>
+                      <Button
+                        onClick={() =>
+                          isAddWatchLater
+                            ? dispatch({
+                                type: "REMOVE_FROM_WATCH_LATER",
+                                payload: video,
+                              })
+                            : dispatch({
+                                type: "ADD_TO_WATCH_LATER",
+                                payload: video,
+                              })
+                        }
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
+                          fill={isAddWatchLater ? "#f1f5f9" : "none"}
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
-                          stroke="currentColor"
+                          stroke={isAddWatchLater ? "#3b82f6" : "currentColor"}
                           className="w-6 h-6"
                         >
                           <path
