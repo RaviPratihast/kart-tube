@@ -16,6 +16,7 @@ const useVideo = () => useContext(VideoContext);
 
 let initialState = {
   initialVideo: videos,
+  liked:[],
 };
 
 const VideoProvider = ({ children }) => {
