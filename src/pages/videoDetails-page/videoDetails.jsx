@@ -113,7 +113,7 @@ function VideoDetails() {
                       </Button>
                     </div>
                   </div>
-                  <div className="h-24 w-3/2 p-2  ">
+                  <div className="h-24 w-3/2 p-2 ">
                     <p>{video.description}</p>
                   </div>
                 </div>
