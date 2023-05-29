@@ -27,7 +27,7 @@ function Explore() {
                 onClick={() =>
                   isAddedToWatchLater
                     ? dispatch({
-                        type: "REMOVE_FROM_WATCH_LATER",
+                      type: "REMOVE_FROM_WATCH_LATER",
                         payload: video,
                       })
                     : dispatch({
