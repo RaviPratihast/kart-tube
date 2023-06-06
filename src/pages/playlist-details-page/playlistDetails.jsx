@@ -21,7 +21,7 @@ function PlaylistDetail() {
       <div className=" shadow-lg h-20 w-60 flex flex-col justify-center items-center border border-blue-500 rounded-md ml-10">
         <h3>Playlist Videos: {playlistVideosLength}</h3>
       </div>
-      <div className="mt-10 border">
+      <div className="mt-10 ">
         {playlistVideosLength === 0 ? (
           <div className="flex justify-center w-full mx-auto">
             <div className="border shadow-lg h-60 w-auto p-20 flex flex-col justify-center items-center gap-2 rounded-md  border-blue-500">
