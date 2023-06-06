@@ -18,6 +18,7 @@ let initialState = {
   initialVideo: videos,
   liked: [],
   watchLater: [],
+  playlists: [],
 };
 
 const VideoProvider = ({ children }) => {

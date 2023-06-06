@@ -1,4 +1,5 @@
 function reducer(state, action) {
+  console.log("action", action);
   switch (action.type) {
     case "ADD_TO_LIKED":
       if (
@@ -36,6 +37,58 @@ function reducer(state, action) {
         ...state,
         watchLater: state.watchLater.filter(
           (watchLaterVideo) => watchLaterVideo.id !== action.payload.id
+        ),
+      };
+    case "CREATE_PLAYLIST":
+      return {
+        ...state,
+        playlists: [...state.playlists, action.payload],
+      };
+    case "ADD_TO_PLAYLIST":
+      const isPlaylistPresent = state.playlists.find(
+        (statePlaylist) =>
+          statePlaylist.playlistName === action.payload.playlistName
+      );
+      const videoThatisTobeAdded = state.initialVideo.find(
+        (singleVideo) => singleVideo.id === action.payload.videoId
+      );
+
+      const updatedPlaylist = {
+        ...isPlaylistPresent,
+        videos: [...isPlaylistPresent.videos, videoThatisTobeAdded],
+      };
+
+      return {
+        ...state,
+        playlists: state.playlists.map((playlist) =>
+          playlist.playlistName === action.payload.playlistName
+            ? updatedPlaylist
+            : playlist
+        ),
+      };
+    case "REMOVE_FROM_PLAYLIST":
+      const { playlistName, videoId } = action.payload;
+      const updatedPlaylists = state.playlists.map((playlist) => {
+        if (playlist.playlistName === playlistName) {
+          const updatedVideos = playlist.videos.filter(
+            (video) => video.id !== videoId
+          );
+          return {
+            ...playlist,
+            videos: updatedVideos,
+          };
+        }
+        return playlist;
+      });
+      return {
+        ...state,
+        playlists: updatedPlaylists,
+      };
+    case "REMOVE_PLAYLIST":
+      return {
+        ...state,
+        playlists: state.playlists.filter(
+          (playlist) => playlist.id !== action.payload
         ),
       };
 

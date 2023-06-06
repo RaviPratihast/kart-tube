@@ -5,6 +5,7 @@ import {
   Explore,
   VideoDetails,
   Playlist,
+  PlaylistDetail,
   WatchLater,
   Liked,
   History,
@@ -84,6 +85,7 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/video/:videoId" element={<VideoDetails />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="playlistDetail/:playlistDetailId" element={<PlaylistDetail/>}/>
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
         <Route path="/history" element={<History />} />

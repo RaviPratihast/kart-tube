@@ -1,33 +1,78 @@
 import React, { useState } from "react";
-import Button from "../../components/button/button";
+import { v4 as uuidv4 } from "uuid";
+import { Button, Toast } from "../../components/index-components";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import VideoLibrary from "../../components/videoLibrary/videoLibrary";
 import { checkingWatchLater } from "../../utilities/checkingWatchLater";
+
 function VideoDetails() {
   const { videoId } = useParams();
   const { state, dispatch } = useVideo();
   const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [modal, setModal] = useState(false);
+  const [playlistName, setPlaylistName] = useState("");
+
+  function createSinglePlaylist(name, id) {
+    dispatch({
+      type: "CREATE_PLAYLIST",
+      payload: { id: id, playlistName: name, videos: [] },
+    });
+
+    setToast(true);
+    setToastMessage("playlist created");
+    setTimeout(() => setToast(false), 3000);
+  }
+  function nameForSinglePlaylistCreate() {
+    if (playlistName !== "") {
+      const id = uuidv4();
+      createSinglePlaylist(playlistName, id);
+      setPlaylistName("");
+    }
+  }
 
   function handleShare() {
-    console.log("clicked handleShare");
     const url = window.location.href;
     navigator.clipboard
       .writeText(url)
       .then(() => {
         console.log("Text copied to clipboard:", url);
         setToast(true);
+        setToastMessage("Link Copied");
         setTimeout(() => setToast(false), 3000);
       })
       .catch((error) => {
-        console.error("Failed to copy text to clipboard:", error);
+        setToast(true);
+        setToastMessage("error");
+        setTimeout(() => setToast(false), 3000);
       });
   }
 
-  // checking if video is already in liked page, then liked button will be complete filled with blue.
+  function handleClickOpen() {
+    setModal(true);
+  }
+  function handleClickClose() {
+    setModal(false);
+  }
+  function checkboxHandler(event, playlist) {
+    if (event.target.checked === true) {
+      dispatch({
+        type: "ADD_TO_PLAYLIST",
+        payload: { playlistName: playlist.playlistName, videoId: videoId },
+      });
+    }
+    if (event.target.checked === false) {
+      dispatch({
+        type: "REMOVE_FROM_PLAYLIST",
+        payload: { playlistName: playlist.playlistName, videoId: videoId },
+      });
+    }
+  }
+
   const isLiked = state.liked.find((likedVideo) => videoId === likedVideo.id);
   const isAddWatchLater = checkingWatchLater(state, videoId);
-  // console.log("watch_later", state.watchLater);
+
   return (
     <div className="flex flex-col justify-center items-center w-full max-w-screen-lg mx-auto ">
       {state.initialVideo.map(
@@ -46,10 +91,6 @@ function VideoDetails() {
                     <div className="flex justify-end gap-5 items-center  w-full p-2">
                       <Button
                         onClick={() =>
-                          // dispatch({
-                          //   type: "ADD_TO_LIKED",
-                          //   payload: video,
-                          // })
                           isLiked
                             ? dispatch({
                                 type: "REMOVE_FROM_LIKED",
@@ -124,7 +165,7 @@ function VideoDetails() {
                         </svg>
                         Share
                       </Button>
-                      <Button onClick={() => console.log("clicked")}>
+                      <Button onClick={() => handleClickOpen()}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -147,10 +188,96 @@ function VideoDetails() {
                     <p>{video.description}</p>
                   </div>
                 </div>
-                {/* <p className="">{video.description}</p> */}
+
                 {toast && (
-                  <div className="fixed bottom-5 left-5 bg-blue-500 text-white border w-80 h-10 flex justify-start items-center rounded shadow-lg  p-3 ">
-                    Link copied to clipboard
+                  <Toast className="fixed bottom-5 left-5 bg-blue-500 text-white border w-80 h-10 flex justify-start items-center rounded shadow-lg  p-3 z-100">
+                    {toastMessage}
+                  </Toast>
+                )}
+
+                {/* add to playlist card window  */}
+                {modal && (
+                  <div
+                    className={`fixed inset-0 flex items-center justify-center ${
+                      modal ? "" : "hidden"
+                    }`}
+                  >
+                    <div className="fixed inset-0 bg-black opacity-50"></div>
+                    <div className="bg-blue-500 w-80 p-6 z-20 ">
+                      <div className="flex justify-between">
+                        <h2 className="text-lg font-bold mb-4">
+                          Add to Playlist
+                        </h2>
+
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          className="w-6 h-6 cursor-pointer"
+                          onClick={handleClickClose}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
+                      {/* Add your content here */}
+                      <div className="flex flex-col gap-2">
+                        <div className=" flex  flex-col w-68 h-60 border rounded bg-white border-slate-400 shadow-lg overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
+                          {state.playlists.map((playlist) => {
+                            const isVideoPresent = playlist.videos.some(
+                              (video) => video.id === videoId
+                            );
+                            return (
+                              <div key={playlist.id}>
+                                <label className="flex gap-1 justify-start items-center ml-2 h-6">
+                                  <input
+                                    type="checkbox"
+                                    className="cursor-pointer"
+                                    checked={isVideoPresent}
+                                    onChange={(event) =>
+                                      checkboxHandler(event, playlist)
+                                    }
+                                  />
+                                  {playlist.playlistName}
+                                </label>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <div className="flex w-full border rounded border-slate-400 items-center shadow-lg ">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="w-8 h-8 p-1 bg-white cursor-pointer"
+                            onClick={() => nameForSinglePlaylistCreate()}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M12 4.5v15m7.5-7.5h-15"
+                            />
+                          </svg>
+
+                          <input
+                            type="text"
+                            placeholder="Playlist Name.."
+                            className="w-full h-8 pl-2 border outline-none "
+                            value={playlistName}
+                            onChange={(event) =>
+                              setPlaylistName(event.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
