@@ -6,7 +6,7 @@ import {
   //   useEffect,
 } from "react";
 import videos from "../../userData/userData";
-import reducer from "../../reducer/reducer";
+import reducer from "../../reducers/reducer";
 
 // creating the context
 const VideoContext = createContext(null);
@@ -21,10 +21,7 @@ let initialState = {
   watchLater: [],
   playlists: [],
   history: [],
-  users: [
-    { user: "Ravi", password: "123" },
-    { user: "a", password: "1" },
-  ],
+  
 };
 
 const VideoProvider = ({ children }) => {
