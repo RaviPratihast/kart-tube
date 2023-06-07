@@ -21,6 +21,10 @@ let initialState = {
   watchLater: [],
   playlists: [],
   history: [],
+  users: [
+    { user: "Ravi", password: "123" },
+    { user: "a", password: "1" },
+  ],
 };
 
 const VideoProvider = ({ children }) => {
