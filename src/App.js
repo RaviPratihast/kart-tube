@@ -16,9 +16,12 @@ import Button from "./components/button/button";
 import { useVideo } from "./context/video-context/video-context";
 // import {Header,Navbar} from "./components/index-components"
 import "./index.css";
+// import { useAuth } from "./context/auth-context";
+import RequiresAuth from "./requiresAuth";
 
 function App() {
   const navigate = useNavigate();
+  // const { loggedIn, setLoggedIn } = useAuth();
   const { state, dispatch } = useVideo();
   const [search, setSearch] = useState("");
   function getActiveStyle({ isActive }) {
@@ -100,7 +103,14 @@ function App() {
         />
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
-        <Route path="/history" element={<History />} />
+        <Route
+          path="/history"
+          element={
+            <RequiresAuth>
+              <History />
+            </RequiresAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
