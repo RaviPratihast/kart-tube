@@ -96,13 +96,34 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/video/:videoId" element={<VideoDetails />} />
-        <Route path="/playlist" element={<Playlist />} />
+        <Route
+          path="/playlist"
+          element={
+            <RequiresAuth>
+              <Playlist />
+            </RequiresAuth>
+          }
+        />
         <Route
           path="playlistDetail/:playlistDetailId"
           element={<PlaylistDetail />}
         />
-        <Route path="/watch-later" element={<WatchLater />} />
-        <Route path="/liked" element={<Liked />} />
+        <Route
+          path="/watch-later"
+          element={
+            <RequiresAuth>
+              <WatchLater />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/liked"
+          element={
+            <RequiresAuth>
+              <Liked />
+            </RequiresAuth>
+          }
+        />
         <Route
           path="/history"
           element={
