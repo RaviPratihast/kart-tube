@@ -108,6 +108,18 @@ function reducer(state, action) {
         ...state,
         history: [],
       };
+    case "SEARCH_VIDEO":
+      return {
+        ...state,
+        initialVideo: state.originalData.filter((video) =>
+          video.title.toLowerCase().includes(action.payload.toLowerCase())
+        ),
+      };
+    // case "SET_DEFAULT_VALUE_OF_VIDEOS":
+    //   return {
+    //     ...state,
+    //     initialVideo: state.originalData,
+    //   };
 
     default:
       return state; // Return the current state for unrecognized actions

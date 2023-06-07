@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import {
   Home,
@@ -13,11 +13,14 @@ import {
   SignUp,
 } from "./pages/index-pages";
 import Button from "./components/button/button";
+import { useVideo } from "./context/video-context/video-context";
 // import {Header,Navbar} from "./components/index-components"
 import "./index.css";
 
 function App() {
   const navigate = useNavigate();
+  const { state, dispatch } = useVideo();
+  const [search, setSearch] = useState("");
   function getActiveStyle({ isActive }) {
     return {
       color: isActive ? "white" : "black",
@@ -27,6 +30,7 @@ function App() {
   function handleClick() {
     navigate("/login");
   }
+
   return (
     <div className="App">
       <nav className=" bg-blue-500 flex w-screen h-20 justify-between gap-2 items-center fixed inset-0">
@@ -58,6 +62,8 @@ function App() {
               type="text"
               placeholder="Search..."
               className="w-full pl-2 pr-2 outline-none"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +71,10 @@ function App() {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-5 h-5 cursor-pointer"
+              onClick={() =>
+                dispatch({ type: "SEARCH_VIDEO", payload: search })
+              }
             >
               <path
                 strokeLinecap="round"
@@ -85,7 +94,10 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/video/:videoId" element={<VideoDetails />} />
         <Route path="/playlist" element={<Playlist />} />
-        <Route path="playlistDetail/:playlistDetailId" element={<PlaylistDetail/>}/>
+        <Route
+          path="playlistDetail/:playlistDetailId"
+          element={<PlaylistDetail />}
+        />
         <Route path="/watch-later" element={<WatchLater />} />
         <Route path="/liked" element={<Liked />} />
         <Route path="/history" element={<History />} />

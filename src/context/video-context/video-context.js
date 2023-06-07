@@ -15,6 +15,7 @@ const VideoContext = createContext(null);
 const useVideo = () => useContext(VideoContext);
 
 let initialState = {
+  originalData: videos,
   initialVideo: videos,
   liked: [],
   watchLater: [],
