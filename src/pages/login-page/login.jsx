@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../../components/index-components";
 import { useAuth } from "../../context/auth-context/auth-context";
+import { useVideo } from "../../context/video-context/video-context";
 
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { loggedIn, setLoggedIn } = useAuth();
+  const { state, dispatch } = useVideo();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   function handleClick() {
@@ -14,10 +16,15 @@ function Login() {
   }
 
   function handleLogin() {
-    // console.log("hellow");
-    if (user === "Ravi" && password === "123") {
+    const isUserPresent = state.users.find(
+      (registeredUser) =>
+        registeredUser.user === user && registeredUser.password === password
+    );
+    if (isUserPresent) {
       setLoggedIn((pre) => !pre);
       navigate(location?.state?.from?.pathname, { replace: true });
+    } else {
+      console.log("wrong password or user");
     }
   }
   return (
