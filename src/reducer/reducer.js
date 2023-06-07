@@ -91,6 +91,23 @@ function reducer(state, action) {
           (playlist) => playlist.id !== action.payload
         ),
       };
+    case "ADD_TO_HISTORY":
+      return {
+        ...state,
+        history: [...state.history, action.payload],
+      };
+    case "REMOVE_FROM_HISTORY":
+      return {
+        ...state,
+        history: state.history.filter(
+          (historyVideo) => historyVideo.id !== action.payload
+        ),
+      };
+    case "REMOVE_ALL_HISTORY":
+      return {
+        ...state,
+        history: [],
+      };
 
     default:
       return state; // Return the current state for unrecognized actions

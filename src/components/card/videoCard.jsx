@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useVideo } from "../../context/video-context/video-context";
 
 // import Button from "../button/button";
 
 function VideoCard({ video, children }) {
+  const { dispatch } = useVideo();
   return (
     <div className="flex  flex-col w-56 h-56  rounded overflow-hidden shadow-lg">
       <Link to={`/video/${video.id}`}>
-        <div className="">
+        <div
+          className=""
+          onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video })}
+        >
           <img
             src={video.thumbnail}
             alt="Video Thumbnail"
