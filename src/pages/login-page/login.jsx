@@ -1,11 +1,24 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/button/button";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "../../components/index-components";
+import { useAuth } from "../../context/auth-context/auth-context";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { loggedIn, setLoggedIn } = useAuth();
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
   function handleClick() {
     navigate("/signup");
+  }
+
+  function handleLogin() {
+    // console.log("hellow");
+    if (user === "Ravi" && password === "123") {
+      setLoggedIn((pre) => !pre);
+      navigate(location?.state?.from?.pathname, { replace: true });
+    }
   }
   return (
     <div className="flex h-screen flex-col">
@@ -30,9 +43,11 @@ function Login() {
               </svg>
 
               <input
-                type="email"
+                type="text"
                 placeholder="username"
                 className="outline-none w-full"
+                value={user}
+                onChange={({ target }) => setUser(target.value)}
               />
             </div>
             <div className="  flex justify-start items-center gap-2 border pl-3 mx-10 p-1 rounded">
@@ -40,13 +55,13 @@ function Login() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                class="w-4 h-4  text-slate-400 "
+                className="w-4 h-4  text-slate-400 "
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
                 />
               </svg>
@@ -55,15 +70,22 @@ function Login() {
                 type="password"
                 placeholder="Password"
                 className="outline-none w-full"
+                value={password}
+                onChange={({ target }) => setPassword(target.value)}
               />
             </div>
           </div>
           <div className="flex justify-end mr-10">
-            <Button>Log In</Button>
+            <Button onClick={() => handleLogin()}>Log In</Button>
           </div>
           <div className="flex justify-center mt-5 gap-2 mx-10">
             <p>Don't have account ? </p>
-            <span className="text-blue-500 font-medium cursor-pointer" onClick={handleClick}>Sign up</span>
+            <span
+              className="text-blue-500 font-medium cursor-pointer"
+              onClick={handleClick}
+            >
+              Sign up
+            </span>
           </div>
         </div>
       </div>
