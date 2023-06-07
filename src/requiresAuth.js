@@ -3,10 +3,10 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../src/context/auth-context/auth-context";
 
 function RequiresAuth({ children }) {
-  const { loggedIn } = useAuth();
+  const { stateAuth } = useAuth();
   const location = useLocation();
 
-  return loggedIn ? (
+  return stateAuth.loggedIn ? (
     children
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />

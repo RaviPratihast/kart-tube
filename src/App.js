@@ -18,11 +18,13 @@ import { useVideo } from "./context/video-context/video-context";
 import "./index.css";
 // import { useAuth } from "./context/auth-context";
 import RequiresAuth from "./requiresAuth";
+import { useAuth } from "./context/auth-context/auth-context";
 
 function App() {
   const navigate = useNavigate();
   // const { loggedIn, setLoggedIn } = useAuth();
   const { state, dispatch } = useVideo();
+  const { stateAuth, dispatchAuth } = useAuth();
   const [search, setSearch] = useState("");
   function getActiveStyle({ isActive }) {
     return {
@@ -30,8 +32,14 @@ function App() {
     };
   }
 
-  function handleClick() {
-    navigate("/login");
+  function handleClick(event) {
+    if (event.target.innerHTML === "Logout") {
+      dispatchAuth({ type: "USER_LOGOUT" });
+      navigate("/login");
+    }
+    if (event.target.innerHTML === "Login") {
+      navigate("/login");
+    }
   }
 
   return (
@@ -87,7 +95,9 @@ function App() {
             </svg>
           </div>
           <div className="w-1/6">
-            <Button onClick={handleClick}>Login</Button>
+            <Button onClick={handleClick}>
+              {stateAuth.loggedIn ? "Logout" : "Login"}
+            </Button>
           </div>
         </div>
       </nav>

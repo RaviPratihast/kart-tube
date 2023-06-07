@@ -20,8 +20,11 @@ function Login() {
         registeredUser.user === user && registeredUser.password === password
     );
     if (isUserPresent) {
-      setLoggedIn((pre) => !pre);
-      navigate(location?.state?.from?.pathname, { replace: true });
+      dispatchAuth({ type: "USER_LOGGED_IN", payload: { loggedIn: true } });
+      const defaultPathName = "/explore";
+      navigate(location?.state?.from?.pathname || defaultPathName, {
+        replace: true,
+      });
     } else {
       console.log("wrong password or user");
     }
