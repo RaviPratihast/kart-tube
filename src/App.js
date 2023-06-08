@@ -148,7 +148,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
       </Routes>
 
-      <ToastContainer />
+      <ToastContainer autoClose={700}/>
     </div>
   );
 }
