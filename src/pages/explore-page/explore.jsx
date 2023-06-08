@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+// import { Link } from "react-router-dom";
 // import ReactPlayer from "react-player";
 // import VideoLibrary from "../../components/videoLibrary/videoLibrary";
 
@@ -26,14 +27,16 @@ function Explore() {
                 className="w-6 h-6 cursor-pointer"
                 onClick={() =>
                   isAddedToWatchLater
-                    ? dispatch({
-                      type: "REMOVE_FROM_WATCH_LATER",
+                    ? (dispatch({
+                        type: "REMOVE_FROM_WATCH_LATER",
                         payload: video,
-                      })
-                    : dispatch({
+                      }),
+                      toast.success("Removed From Watch Later"))
+                    : (dispatch({
                         type: "ADD_TO_WATCH_LATER",
                         payload: video,
-                      })
+                      }),
+                      toast.success("Added to Watch Later"))
                 }
               >
                 <path
