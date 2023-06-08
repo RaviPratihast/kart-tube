@@ -13,16 +13,12 @@ const initialState = {
 };
 
 const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  //   i will also merge this above usestate in the reducer, cause i am already using reducer then what is the point of using it?
   const [stateAuth, dispatchAuth] = useReducer(
     authenticationReducer,
     initialState
   );
   return (
-    <AuthContext.Provider
-      value={{ stateAuth, dispatchAuth, loggedIn, setLoggedIn }}
-    >
+    <AuthContext.Provider value={{ stateAuth, dispatchAuth }}>
       {children}
     </AuthContext.Provider>
   );

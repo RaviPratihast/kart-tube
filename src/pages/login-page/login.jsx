@@ -7,7 +7,7 @@ import { useAuth } from "../../context/auth-context/auth-context";
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { stateAuth, dispatchAuth, loggedIn, setLoggedIn } = useAuth();
+  const { stateAuth, dispatchAuth } = useAuth();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   function handleClick() {
