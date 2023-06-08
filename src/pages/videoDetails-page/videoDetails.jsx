@@ -35,15 +35,10 @@ function VideoDetails() {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        console.log("Text copied to clipboard:", url);
-        // setToast(true);
-        // setToastMessage("Link Copied");
-        // setTimeout(() => setToast(false), 3000);
+        toast.success("Link Copied To Clipboard");
       })
       .catch((error) => {
-        // setToast(true);
-        // setToastMessage("error");
-        // setTimeout(() => setToast(false), 3000);
+        toast.error("Error Copying The Link");
       });
   }
 
