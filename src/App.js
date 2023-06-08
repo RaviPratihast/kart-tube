@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
 import {
   Home,
   Explore,
@@ -37,6 +37,7 @@ function App() {
     if (event.target.innerHTML === "Logout") {
       dispatchAuth({ type: "USER_LOGOUT" });
       navigate("/login");
+      toast.success("Logged Out")
     }
     if (event.target.innerHTML === "Login") {
       navigate("/login");

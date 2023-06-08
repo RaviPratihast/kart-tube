@@ -30,8 +30,7 @@ function Login() {
       });
       toast.success("Sign in successful!");
     } else {
-      // console.log("wrong password or user");
-      toast.error("Wrong Password,try again!")
+      toast.error("Wrong Password,try again!");
     }
   }
 
