@@ -28,7 +28,7 @@ function Login() {
       navigate(location?.state?.from?.pathname || defaultPathName, {
         replace: true,
       });
-      toast.success("Sign in successful!");
+      toast.success("Logged in successful!");
     } else {
       toast.error("Wrong Password,try again!");
     }
@@ -40,7 +40,7 @@ function Login() {
     navigate(location?.state?.from?.pathname || defaultPathName, {
       replace: true,
     });
-    toast.success("Welcome,Ravi");
+    toast.success("Welcome,Guest");
   }
   return (
     <div className="flex h-screen flex-col">
