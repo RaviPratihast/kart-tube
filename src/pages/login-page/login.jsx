@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../../components/index-components";
 import { useAuth } from "../../context/auth-context/auth-context";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// import { useVideo } from "../../context/video-context/video-context";
 
 function Login() {
   const navigate = useNavigate();
