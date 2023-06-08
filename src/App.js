@@ -20,7 +20,6 @@ import RequiresAuth from "./requiresAuth";
 import { useAuth } from "./context/auth-context/auth-context";
 function App() {
   const navigate = useNavigate();
-  // const { loggedIn, setLoggedIn } = useAuth();
   const { dispatch } = useVideo();
   const { stateAuth, dispatchAuth } = useAuth();
   const [search, setSearch] = useState("");
