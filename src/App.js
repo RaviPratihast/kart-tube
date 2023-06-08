@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import {
   Home,
   Explore,
@@ -15,16 +15,13 @@ import {
 } from "./pages/index-pages";
 import Button from "./components/button/button";
 import { useVideo } from "./context/video-context/video-context";
-// import {Header,Navbar} from "./components/index-components"
 import "./index.css";
-// import { useAuth } from "./context/auth-context";
 import RequiresAuth from "./requiresAuth";
 import { useAuth } from "./context/auth-context/auth-context";
-
 function App() {
   const navigate = useNavigate();
   // const { loggedIn, setLoggedIn } = useAuth();
-  const { state, dispatch } = useVideo();
+  const { dispatch } = useVideo();
   const { stateAuth, dispatchAuth } = useAuth();
   const [search, setSearch] = useState("");
   function getActiveStyle({ isActive }) {
@@ -37,7 +34,7 @@ function App() {
     if (event.target.innerHTML === "Logout") {
       dispatchAuth({ type: "USER_LOGOUT" });
       navigate("/login");
-      toast.success("Logged Out")
+      toast.success("Logged Out");
     }
     if (event.target.innerHTML === "Login") {
       navigate("/login");
@@ -148,7 +145,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
       </Routes>
 
-      <ToastContainer autoClose={700}/>
+      <ToastContainer autoClose={700} />
     </div>
   );
 }
