@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+// import { ToastContainer, toast } from "react-toastify";
 import {
   Home,
   Explore,
@@ -16,10 +17,15 @@ import Button from "./components/button/button";
 import { useVideo } from "./context/video-context/video-context";
 // import {Header,Navbar} from "./components/index-components"
 import "./index.css";
+// import { useAuth } from "./context/auth-context";
+import RequiresAuth from "./requiresAuth";
+import { useAuth } from "./context/auth-context/auth-context";
 
 function App() {
   const navigate = useNavigate();
+  // const { loggedIn, setLoggedIn } = useAuth();
   const { state, dispatch } = useVideo();
+  const { stateAuth, dispatchAuth } = useAuth();
   const [search, setSearch] = useState("");
   function getActiveStyle({ isActive }) {
     return {
@@ -27,8 +33,14 @@ function App() {
     };
   }
 
-  function handleClick() {
-    navigate("/login");
+  function handleClick(event) {
+    if (event.target.innerHTML === "Logout") {
+      dispatchAuth({ type: "USER_LOGOUT" });
+      navigate("/login");
+    }
+    if (event.target.innerHTML === "Login") {
+      navigate("/login");
+    }
   }
 
   return (
@@ -84,7 +96,9 @@ function App() {
             </svg>
           </div>
           <div className="w-1/6">
-            <Button onClick={handleClick}>Login</Button>
+            <Button onClick={handleClick}>
+              {stateAuth.loggedIn ? "Logout" : "Login"}
+            </Button>
           </div>
         </div>
       </nav>
@@ -93,17 +107,47 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/video/:videoId" element={<VideoDetails />} />
-        <Route path="/playlist" element={<Playlist />} />
+        <Route
+          path="/playlist"
+          element={
+            <RequiresAuth>
+              <Playlist />
+            </RequiresAuth>
+          }
+        />
         <Route
           path="playlistDetail/:playlistDetailId"
           element={<PlaylistDetail />}
         />
-        <Route path="/watch-later" element={<WatchLater />} />
-        <Route path="/liked" element={<Liked />} />
-        <Route path="/history" element={<History />} />
+        <Route
+          path="/watch-later"
+          element={
+            <RequiresAuth>
+              <WatchLater />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/liked"
+          element={
+            <RequiresAuth>
+              <Liked />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <RequiresAuth>
+              <History />
+            </RequiresAuth>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+
+      {/* <ToastContainer /> */}
     </div>
   );
 }
