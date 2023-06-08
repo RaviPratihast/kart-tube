@@ -1,10 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import ReactPlayer from "react-player";
-// import VideoLibrary from "../../components/videoLibrary/videoLibrary";
-
 import { useVideo } from "../../context/video-context/video-context";
 import { useAuth } from "../../context/auth-context/auth-context";
 import VideoCard from "../../components/card/videoCard";
@@ -27,7 +23,6 @@ function Explore() {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke={isAddedToWatchLater ? "#3b82f6" : "currentColor"}
-                // stroke={isAddedToWatchLater ? "#3b82f6" : "currentColor"}
                 className="w-6 h-6 cursor-pointer"
                 onClick={() =>
                   stateAuth.loggedIn

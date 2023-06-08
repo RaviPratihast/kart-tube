@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button, Toast } from "../../components/index-components";
+import { Button } from "../../components/index-components";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import { useAuth } from "../../context/auth-context/auth-context";
@@ -15,8 +15,6 @@ function VideoDetails() {
   const navigate = useNavigate();
   const { state, dispatch } = useVideo();
   const { stateAuth } = useAuth();
-  // const [toast, setToast] = useState(false);
-  // const [toastMessage, setToastMessage] = useState("");
   const [modal, setModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
 
@@ -203,13 +201,6 @@ function VideoDetails() {
                   </div>
                 </div>
 
-                {/* {toast && (
-                  <Toast className="fixed bottom-5 left-5 bg-blue-500 text-white border w-80 h-10 flex justify-start items-center rounded shadow-lg  p-3 z-100">
-                    {toastMessage}
-                  </Toast>
-                )} */}
-
-                {/* add to playlist card window  */}
                 {modal && (
                   <div
                     className={`fixed inset-0 flex items-center justify-center ${
@@ -239,7 +230,7 @@ function VideoDetails() {
                           />
                         </svg>
                       </div>
-                      {/* Add your content here */}
+
                       <div className="flex flex-col gap-2">
                         <div className=" flex  flex-col w-68 h-60 border rounded bg-white border-slate-400 shadow-lg overflow-y-auto scrollbar scrollbar-thumb-blue-500 scrollbar-track-gray-200 scrollbar-thin">
                           {state.playlists.map((playlist) => {

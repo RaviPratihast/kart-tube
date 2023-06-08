@@ -2,7 +2,6 @@ import "tailwindcss/tailwind.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/button";
-// import imageSrc from "/public/images/comic.jpg";
 import "../../index.css";
 
 function Home() {

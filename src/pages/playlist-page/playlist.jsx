@@ -14,7 +14,6 @@ function Playlist() {
     <div className="flex h-screen flex-col ">
       <div className=" flex flex-col  mt-28 w-full h-full ">
         <div className=" shadow-lg h-20 w-60 flex flex-col justify-center items-center border border-blue-500 rounded-md ml-10">
-          {/* count of playlist */}
           <h3>Playlists:{state.playlists.length}</h3>
         </div>
         <div className=" flex  items-center mt-20 mx-10">
@@ -30,7 +29,6 @@ function Playlist() {
           ) : (
             <div className="flex flex-wrap gap-2 justify-start items-center mx-3">
               {state.playlists.map((playlist) => {
-                // const { videos } = playlist;
                 return (
                   <div
                     key={playlist.id}
@@ -73,8 +71,6 @@ function Playlist() {
               })}
             </div>
           )}
-
-          {/* div with same above style, inside this div there will be added playlist, first the playlist will be created. */}
         </div>
       </div>
     </div>

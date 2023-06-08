@@ -14,12 +14,9 @@ function WatchLater() {
     <div className="flex h-screen flex-col">
       <div className=" flex flex-col  mt-28 w-full h-full ">
         <div className=" shadow-lg h-20 w-60 flex flex-col justify-center items-center border border-blue-500 rounded-md ml-10">
-          {/* count of playlist */}
           <h3>Watch Later : {state.watchLater.length}</h3>
         </div>
         <div className="m-20 flex justify-center items-center ">
-          {/* playlists */}
-
           {state.watchLater.length === 0 ? (
             <div className="shadow-lg h-60 w-auto p-20 flex flex-col justify-center items-center gap-2 rounded-md  border border-blue-500 ml-10">
               <h2 className="flex flex-col text-lg">

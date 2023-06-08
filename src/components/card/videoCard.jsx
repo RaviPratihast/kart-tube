@@ -10,7 +10,6 @@ function VideoCard({ video, children }) {
     <div className="flex  flex-col w-56 h-56  rounded overflow-hidden shadow-lg">
       <Link to={`/video/${video.id}`}>
         <div
-          className=""
           onClick={() => {
             dispatch({ type: "ADD_TO_HISTORY", payload: video });
           }}

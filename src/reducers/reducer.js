@@ -1,5 +1,4 @@
 function reducer(state, action) {
-  console.log("action", action);
   switch (action.type) {
     case "ADD_TO_LIKED":
       if (
@@ -94,7 +93,11 @@ function reducer(state, action) {
     case "ADD_TO_HISTORY":
       return {
         ...state,
-        history: [...state.history, action.payload],
+        history: state.history.some(
+          (historyVideo) => historyVideo.id === action.payload.id
+        )
+          ? state.history
+          : [...state.history, action.payload],
       };
     case "REMOVE_FROM_HISTORY":
       return {

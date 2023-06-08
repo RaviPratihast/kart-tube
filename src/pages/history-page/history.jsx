@@ -14,7 +14,6 @@ function History() {
     <div className="flex h-screen flex-col">
       <div className=" flex flex-col  mt-28 w-full h-full ">
         <div className=" h-20 flex justify-between items-center mx-10 ml-10 ">
-          {/* count of playlist */}
           <h3 className="text-xl">Watched History</h3>
           {state.history.length !== 0 && (
             <Button
@@ -42,8 +41,6 @@ function History() {
           )}
         </div>
         <div className=" mt-10 flex justify-center items-center">
-          {/* playlists */}
-
           {state.history.length === 0 ? (
             <div className="shadow-lg h-60 w-auto p-20 flex flex-col justify-center items-center gap-2 rounded-md  border border-blue-500 ml-10">
               <h2 className="flex flex-col text-lg">
@@ -52,7 +49,7 @@ function History() {
               <Button onClick={handleClick}>Watch Now</Button>
             </div>
           ) : (
-            <div className="flex  flex-wrap justify-start border items-start gap-3 w-auto mb-10 mx-10">
+            <div className="flex  flex-wrap justify-start items-start gap-3 w-full mb-10 mx-10">
               {state.history.map((historyVideo) => {
                 return (
                   <VideoCard key={historyVideo.id} video={historyVideo}>
@@ -82,8 +79,6 @@ function History() {
               })}
             </div>
           )}
-
-          {/* div with same above style, inside this div there will be added playlist, first the playlist will be created. */}
         </div>
       </div>
     </div>
