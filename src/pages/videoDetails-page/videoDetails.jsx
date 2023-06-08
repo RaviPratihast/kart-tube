@@ -119,14 +119,16 @@ function VideoDetails() {
                       <Button
                         onClick={() =>
                           isAddWatchLater
-                            ? dispatch({
+                            ? (dispatch({
                                 type: "REMOVE_FROM_WATCH_LATER",
                                 payload: video,
-                              })
-                            : dispatch({
+                              }),
+                              toast.success("Removed From Watch Later"))
+                            : (dispatch({
                                 type: "ADD_TO_WATCH_LATER",
                                 payload: video,
-                              })
+                              }),
+                              toast.success("Added To Watch Later"))
                         }
                       >
                         <svg
