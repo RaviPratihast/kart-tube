@@ -87,14 +87,16 @@ function VideoDetails() {
                       <Button
                         onClick={() =>
                           isLiked
-                            ? dispatch({
+                            ? (dispatch({
                                 type: "REMOVE_FROM_LIKED",
                                 payload: video,
-                              })
-                            : dispatch({
+                              }),
+                              toast.success("Removed from Liked"))
+                            : (dispatch({
                                 type: "ADD_TO_LIKED",
                                 payload: video,
-                              })
+                              }),
+                              toast.success("Added to Liked"))
                         }
                       >
                         <svg
