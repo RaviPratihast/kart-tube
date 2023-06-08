@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 import { Button, Toast } from "../../components/index-components";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
@@ -9,8 +10,8 @@ import { checkingWatchLater } from "../../utilities/checkingWatchLater";
 function VideoDetails() {
   const { videoId } = useParams();
   const { state, dispatch } = useVideo();
-  const [toast, setToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
+  // const [toast, setToast] = useState(false);
+  // const [toastMessage, setToastMessage] = useState("");
   const [modal, setModal] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
 
@@ -19,10 +20,7 @@ function VideoDetails() {
       type: "CREATE_PLAYLIST",
       payload: { id: id, playlistName: name, videos: [] },
     });
-
-    setToast(true);
-    setToastMessage("playlist created");
-    setTimeout(() => setToast(false), 3000);
+    toast.success("Playlist Created");
   }
   function nameForSinglePlaylistCreate() {
     if (playlistName !== "") {
@@ -38,14 +36,14 @@ function VideoDetails() {
       .writeText(url)
       .then(() => {
         console.log("Text copied to clipboard:", url);
-        setToast(true);
-        setToastMessage("Link Copied");
-        setTimeout(() => setToast(false), 3000);
+        // setToast(true);
+        // setToastMessage("Link Copied");
+        // setTimeout(() => setToast(false), 3000);
       })
       .catch((error) => {
-        setToast(true);
-        setToastMessage("error");
-        setTimeout(() => setToast(false), 3000);
+        // setToast(true);
+        // setToastMessage("error");
+        // setTimeout(() => setToast(false), 3000);
       });
   }
 
@@ -61,12 +59,14 @@ function VideoDetails() {
         type: "ADD_TO_PLAYLIST",
         payload: { playlistName: playlist.playlistName, videoId: videoId },
       });
+      toast.success("Video Added to Playlist");
     }
     if (event.target.checked === false) {
       dispatch({
         type: "REMOVE_FROM_PLAYLIST",
         payload: { playlistName: playlist.playlistName, videoId: videoId },
       });
+      toast.success("Video Removed from Playlist");
     }
   }
 
@@ -189,11 +189,11 @@ function VideoDetails() {
                   </div>
                 </div>
 
-                {toast && (
+                {/* {toast && (
                   <Toast className="fixed bottom-5 left-5 bg-blue-500 text-white border w-80 h-10 flex justify-start items-center rounded shadow-lg  p-3 z-100">
                     {toastMessage}
                   </Toast>
-                )}
+                )} */}
 
                 {/* add to playlist card window  */}
                 {modal && (
