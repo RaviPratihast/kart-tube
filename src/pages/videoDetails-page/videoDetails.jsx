@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Toast } from "../../components/index-components";
 import { useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
+import { useAuth } from "../../context/auth-context/auth-context";
 import VideoLibrary from "../../components/videoLibrary/videoLibrary";
+
 import { checkingWatchLater } from "../../utilities/checkingWatchLater";
 
 function VideoDetails() {
   const { videoId } = useParams();
+  const navigate = useNavigate();
   const { state, dispatch } = useVideo();
+  const { stateAuth } = useAuth();
   // const [toast, setToast] = useState(false);
   // const [toastMessage, setToastMessage] = useState("");
   const [modal, setModal] = useState(false);
@@ -86,17 +91,19 @@ function VideoDetails() {
                     <div className="flex justify-end gap-5 items-center  w-full p-2">
                       <Button
                         onClick={() =>
-                          isLiked
-                            ? (dispatch({
-                                type: "REMOVE_FROM_LIKED",
-                                payload: video,
-                              }),
-                              toast.success("Removed from Liked"))
-                            : (dispatch({
-                                type: "ADD_TO_LIKED",
-                                payload: video,
-                              }),
-                              toast.success("Added to Liked"))
+                          stateAuth.loggedIn
+                            ? isLiked
+                              ? (dispatch({
+                                  type: "REMOVE_FROM_LIKED",
+                                  payload: video,
+                                }),
+                                toast.success("Removed from Liked"))
+                              : (dispatch({
+                                  type: "ADD_TO_LIKED",
+                                  payload: video,
+                                }),
+                                toast.success("Added to Liked"))
+                            : navigate("/login")
                         }
                       >
                         <svg
@@ -118,17 +125,19 @@ function VideoDetails() {
                       </Button>
                       <Button
                         onClick={() =>
-                          isAddWatchLater
-                            ? (dispatch({
-                                type: "REMOVE_FROM_WATCH_LATER",
-                                payload: video,
-                              }),
-                              toast.success("Removed From Watch Later"))
-                            : (dispatch({
-                                type: "ADD_TO_WATCH_LATER",
-                                payload: video,
-                              }),
-                              toast.success("Added To Watch Later"))
+                          stateAuth.loggedIn
+                            ? isAddWatchLater
+                              ? (dispatch({
+                                  type: "REMOVE_FROM_WATCH_LATER",
+                                  payload: video,
+                                }),
+                                toast.success("Removed From Watch Later"))
+                              : (dispatch({
+                                  type: "ADD_TO_WATCH_LATER",
+                                  payload: video,
+                                }),
+                                toast.success("Added To Watch Later"))
+                            : navigate("/login")
                         }
                       >
                         <svg
@@ -164,7 +173,13 @@ function VideoDetails() {
                         </svg>
                         Share
                       </Button>
-                      <Button onClick={() => handleClickOpen()}>
+                      <Button
+                        onClick={() => {
+                          stateAuth.loggedIn
+                            ? handleClickOpen()
+                            : navigate("/login");
+                        }}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -238,9 +253,9 @@ function VideoDetails() {
                                     type="checkbox"
                                     className="cursor-pointer"
                                     checked={isVideoPresent}
-                                    onChange={(event) =>
-                                      checkboxHandler(event, playlist)
-                                    }
+                                    onChange={(event) => {
+                                      checkboxHandler(event, playlist);
+                                    }}
                                   />
                                   {playlist.playlistName}
                                 </label>
