@@ -11,7 +11,9 @@ function VideoCard({ video, children }) {
       <Link to={`/video/${video.id}`}>
         <div
           className=""
-          onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: video })}
+          onClick={() => {
+            dispatch({ type: "ADD_TO_HISTORY", payload: video });
+          }}
         >
           <img
             src={video.thumbnail}

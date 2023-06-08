@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import { VideoCard, Button } from "../../components/index-components";
@@ -37,12 +38,13 @@ function Liked() {
                     strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-6 h-6 cursor-pointer text-blue-500"
-                    onClick={() =>
+                    onClick={() => {
                       dispatch({
                         type: "REMOVE_FROM_LIKED",
                         payload: likedVideo,
-                      })
-                    }
+                      });
+                      toast.success("Removed From Liked");
+                    }}
                   >
                     <path
                       strokeLinecap="round"

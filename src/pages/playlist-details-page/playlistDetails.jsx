@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import { VideoCard, Button } from "../../components/index-components";
+import { toast } from 'react-toastify';
 
 function PlaylistDetail() {
   const navigate = useNavigate();
@@ -48,15 +49,28 @@ function PlaylistDetail() {
                           strokeWidth="1.5"
                           stroke="currentColor"
                           className="w-6 h-6 cursor-pointer"
-                          onClick={() =>
+                          // onClick={() =>
+                          //   dispatch({
+                          //     type: "REMOVE_FROM_PLAYLIST",
+                          //     payload: {
+                          //       playlistName: playlist.playlistName,
+                          //       videoId: video.id,
+                          //     },
+                          //   });
+                          //   toast.success("Playlist Removed")
+                           
+                          // }
+                          onClick={() => {
                             dispatch({
                               type: "REMOVE_FROM_PLAYLIST",
                               payload: {
                                 playlistName: playlist.playlistName,
                                 videoId: video.id,
                               },
-                            })
-                          }
+                            });
+                            toast.success("Video Removed From Playlist");
+                          }}
+                          
                         >
                           <path
                             strokeLinecap="round"

@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
 import { Button, VideoCard } from "../../components/index-components";
@@ -38,12 +39,13 @@ function WatchLater() {
                       strokeWidth="1.5"
                       stroke="currentColor"
                       className="w-6 h-6 cursor-pointer"
-                      onClick={() =>
+                      onClick={() => {
                         dispatch({
                           type: "REMOVE_FROM_WATCH_LATER",
                           payload: watchLaterVideo,
-                        })
-                      }
+                        });
+                        toast.success("Removed From Watch Later");
+                      }}
                     >
                       <path
                         strokeLinecap="round"
