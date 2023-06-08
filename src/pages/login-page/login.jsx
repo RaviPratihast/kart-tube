@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../../components/index-components";
 import { useAuth } from "../../context/auth-context/auth-context";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import { useVideo } from "../../context/video-context/video-context";
 
@@ -28,17 +28,10 @@ function Login() {
       navigate(location?.state?.from?.pathname || defaultPathName, {
         replace: true,
       });
-      // toast.success("Sign in successful!", {
-      //   position: "top-right",
-      //   autoClose: 3000,
-      //   hideProgressBar: true,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      // });
+      toast.success("Sign in successful!");
     } else {
-      console.log("wrong password or user");
+      // console.log("wrong password or user");
+      toast.error("Wrong Password,try again!")
     }
   }
 
