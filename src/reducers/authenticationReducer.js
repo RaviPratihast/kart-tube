@@ -6,6 +6,11 @@ function authenticationReducer(stateAuth, actionAuth) {
         ...stateAuth,
         loggedIn: !stateAuth.loggedIn,
       };
+    case "GUEST_USER_LOGGED_IN":
+      return {
+        ...stateAuth,
+        loggedIn: !stateAuth.loggedIn,
+      };
     case "USER_LOGOUT":
       return {
         ...stateAuth,

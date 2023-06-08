@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+// import { ToastContainer, toast } from "react-toastify";
 import {
   Home,
   Explore,
@@ -145,6 +146,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+
+      {/* <ToastContainer /> */}
     </div>
   );
 }

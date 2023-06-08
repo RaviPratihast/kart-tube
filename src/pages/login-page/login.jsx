@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../../components/index-components";
 import { useAuth } from "../../context/auth-context/auth-context";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+
 // import { useVideo } from "../../context/video-context/video-context";
 
 function Login() {
@@ -25,9 +28,26 @@ function Login() {
       navigate(location?.state?.from?.pathname || defaultPathName, {
         replace: true,
       });
+      // toast.success("Sign in successful!", {
+      //   position: "top-right",
+      //   autoClose: 3000,
+      //   hideProgressBar: true,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      // });
     } else {
       console.log("wrong password or user");
     }
+  }
+
+  function handleGuestLogin() {
+    dispatchAuth({ type: "GUEST_USER_LOGGED_IN", payload: { loggedIn: true } });
+    const defaultPathName = "/explore";
+    navigate(location?.state?.from?.pathname || defaultPathName, {
+      replace: true,
+    });
   }
   return (
     <div className="flex h-screen flex-col">
@@ -86,6 +106,7 @@ function Login() {
           </div>
           <div className="flex justify-end mr-10">
             <Button onClick={() => handleLogin()}>Log In</Button>
+            <Button onClick={() => handleGuestLogin()}>Guest Login</Button>
           </div>
           <div className="flex justify-center mt-5 gap-2 mx-10">
             <p>Don't have account ? </p>
