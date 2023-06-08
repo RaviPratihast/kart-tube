@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import Button from "../../components/button/button";
 import { useNavigate, Link } from "react-router-dom";
 import { useVideo } from "../../context/video-context/video-context";
@@ -52,12 +53,13 @@ function Playlist() {
                         strokeWidth="1.5"
                         stroke="currentColor"
                         className="w-6 h-6 cursor-pointer"
-                        onClick={() =>
+                        onClick={() => {
                           dispatch({
                             type: "REMOVE_PLAYLIST",
                             payload: playlist.id,
-                          })
-                        }
+                          });
+                          toast.success("Playlist Removed");
+                        }}
                       >
                         <path
                           strokeLinecap="round"
