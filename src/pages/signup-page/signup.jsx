@@ -12,7 +12,7 @@ function SignUp() {
   const [signedIn, setSignedIn] = useState(false);
   function handleLogin() {
     navigate("/login");
-    setSignedIn((prev) => !prev);
+    // setSignedIn((prev) => !prev);
   }
   function handleSignIn() {
     if (
@@ -151,7 +151,7 @@ function SignUp() {
             <p>Already have a account ? </p>
             <span
               className="text-blue-500 font-medium cursor-pointer"
-              onClick={() => handleLogin}
+              onClick={() => handleLogin()}
             >
               Log In
             </span>
