@@ -48,7 +48,7 @@ kartTube is basic video library for watching video contents.
 
 ## Demo
 
-<!-- ![Alt Text]() -->
+![kartTube](/public/image/kartTube.gif)
 
 
 ## Tech Stack
