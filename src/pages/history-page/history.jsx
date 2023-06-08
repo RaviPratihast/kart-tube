@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Button, VideoCard } from "../../components/index-components";
 import { useVideo } from "../../context/video-context/video-context";
@@ -16,7 +17,12 @@ function History() {
           {/* count of playlist */}
           <h3 className="text-xl">Watched History</h3>
           {state.history.length !== 0 && (
-            <Button onClick={() => dispatch({ type: "REMOVE_ALL_HISTORY" })}>
+            <Button
+              onClick={() => {
+                dispatch({ type: "REMOVE_ALL_HISTORY" });
+                toast.success("History Cleared");
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -57,12 +63,13 @@ function History() {
                       strokeWidth="1.5"
                       stroke="currentColor"
                       className="w-6 h-6 cursor-pointer"
-                      onClick={() =>
+                      onClick={() => {
                         dispatch({
                           type: "REMOVE_FROM_HISTORY",
                           payload: historyVideo.id,
-                        })
-                      }
+                        });
+                        toast.success("Removed From History");
+                      }}
                     >
                       <path
                         strokeLinecap="round"
