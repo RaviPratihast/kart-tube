@@ -40,6 +40,7 @@ function Login() {
     navigate(location?.state?.from?.pathname || defaultPathName, {
       replace: true,
     });
+    toast.success("Welcome,Ravi");
   }
   return (
     <div className="flex h-screen flex-col">
