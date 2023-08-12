@@ -54,10 +54,7 @@ kartTube is basic video library for watching video contents.
 
 ## Tech Stack
  - React JS
- - React Router v6
- - React Context API
- - useReducer
- - useState
+ - React Router
  - Flexbox layout
  - TailwindCSS
 
